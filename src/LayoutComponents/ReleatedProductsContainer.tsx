@@ -9,10 +9,15 @@ import { APIResp } from "../models/APIResp";
 export const ReleatedProductsContainer = () =>{
 
     const [data, setData] = useState({} as APIResp);
+    const fetchData = async () =>{
+        const response =  await axios.get("https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json")
+        .then(resp => resp);
+        setData(response.data);
+    }
 
     useEffect(()=>{
-        axios.get("https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json")
-        .then(resp => setData(resp.data));
+
+        fetchData()
         
     }, []);
 
@@ -49,8 +54,8 @@ export const ReleatedProductsContainer = () =>{
 
                 
 
-                {data.products.slice(0,4).map(product => <ProductComp product={product}/>)}
-                
+                {data.products? data.products.slice(0,4).map(product => <ProductComp product={product}/>): ""}
+               
                 
             </div>
         </div>

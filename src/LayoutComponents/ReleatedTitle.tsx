@@ -7,7 +7,7 @@ export const ReleatedTitle = ({content}: TitleProps) =>{
 
     return(
         <div className="releated-products-title">
-           {content}
+           <h1><span>{content}</span></h1>
         </div>
     )
 }
